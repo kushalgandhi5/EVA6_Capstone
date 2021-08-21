@@ -21,3 +21,11 @@ And then we are finally left with the panoptic segmentation
 - W is nothing but the width of the original image
 
 3. The activation map generated from the Resnet50 block is stored. The activation heat maps are extracted from the layer 2,3,4 and 5 of the Resnet block and the encoded images or the attention heat maps gets sampled from NxMxH/32xW/32 to NxH/4xW/4 by passing it continuously through these Resnet layer. The activation maps helps to generate the segmentation scale for particular class based on the bounding box.
+
+
+## Approach:
+- Collect the dataset images
+- Pass the images through the model to get predictions for stuff categories.
+- Combine the predicted annotations and prepare the dataset.
+- Train model for BBOX detection on the prepared things dataset along with other stuff categories.
+- Train DETR model for Panoptic segmentation on the above dataset.
