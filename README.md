@@ -1,7 +1,7 @@
 # EVA6_Capstone
 Capstone Project - Object Detection and Panoptic Segmentation on Custom Construction Dataset
 
-Unlike traditional computer vision techniques, DETR approaches object detection as a direct set prediction problem. It consists of a set-based global loss, which forces unique predictions via bipartite matching, and a Transformer encoder-decoder architecture. Given a fixed small set of learned object queries, DETR reasons about the relations of the objects and the global image context to directly output the final set of predictions in parallel. Due to this parallel nature, DETR is very fast and efficient.
+Unlike traditional computer vision techniques, DETR approaches object detection as a direct set prediction problem. It consists of a set-based global loss, which forces unique predictions via bipartite matching, and a Transformer encoder-decoder architecture. Given a fixed small set of learned object queries, DETR reasons about the relations of the objects and the global image context to directly output the final set of predictions in parallel. Due to this parallel nature, DETR is very fast and efficient..
 ## Part-1 Questions:
 
 1. We take the encoded image (dxH/32xW/32) and send it to 2. Multi-Head Attention (FROM WHERE DO WE TAKE THIS ENCODED IMAGE?)
