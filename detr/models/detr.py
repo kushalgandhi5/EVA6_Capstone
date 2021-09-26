@@ -42,9 +42,10 @@ class DETR(nn.Module):
         self.aux_loss = aux_loss
 
     def forward(self, samples: NestedTensor):
-        """ The forward expects a NestedTensor, which consists of:
+        """ The forward expects a NestedTensor, which consists of:
                - samples.tensor: batched images, of shape [batch_size x 3 x H x W]
                - samples.mask: a binary mask of shape [batch_size x H x W], containing 1 on padded pixels
+
             It returns a dict with the following elements:
                - "pred_logits": the classification logits (including no-object) for all queries.
                                 Shape= [batch_size x num_queries x (num_classes + 1)]
@@ -313,6 +314,10 @@ def build(args):
     # num_classes = 20 if args.dataset_file != 'coco' else 91
     if args.dataset_file == "construction":
         num_classes = 63+1 # 63 Classes + 1 for no object
+    if args.dataset_file == "construction_panoptic":
+        # for panoptic, we just add a num_classes that is large enough to hold
+        # max_obj_id + 1, but the exact value doesn't really matter
+        num_classes = 63+1
     if args.dataset_file == "coco_panoptic":
         # for panoptic, we just add a num_classes that is large enough to hold
         # max_obj_id + 1, but the exact value doesn't really matter
@@ -356,6 +361,9 @@ def build(args):
         postprocessors['segm'] = PostProcessSegm()
         if args.dataset_file == "coco_panoptic":
             is_thing_map = {i: i <= 90 for i in range(201)}
+            postprocessors["panoptic"] = PostProcessPanoptic(is_thing_map, threshold=0.85)
+        elif args.dataset_file == "construction_panoptic":
+            is_thing_map = {i: i <= 47 for i in range(64)}
             postprocessors["panoptic"] = PostProcessPanoptic(is_thing_map, threshold=0.85)
 
     return model, criterion, postprocessors
