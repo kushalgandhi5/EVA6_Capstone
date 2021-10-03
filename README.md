@@ -30,3 +30,16 @@ And then we are finally left with the panoptic segmentation
 - Combine the predicted annotations and prepare the dataset.
 - Train model for BBOX detection on the prepared things dataset along with other stuff categories.
 - Train DETR model for Panoptic segmentation on the above dataset.
+
+### Object Detection Prediction Results:
+
+<img src="./Output_images_all_classes/wheel_loader_____img_091.jpg"   alt="Wheel_loader_detection" width="600"/>
+
+On training the DETR model on Custom Construction Dataset with 50 Classes, achieved the following results:
+- Average Precision: 0.50
+- Average Recall: 0.75
+
+### Acknowledgements:
+- Facebook research DETR transformer
+- DETR - End to end object detection with transformers [Link](https://www.youtube.com/watch?v=utxbUlo9CyY)
+- Training End-to-end Object Detection with Transformer(DETR) model on custom dataset [Link](https://www.youtube.com/watch?v=RkhXoj_Vvr4)
